@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinkCycle — Update Cycle</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="logo">Pink<span>Cycle</span></div>
+    <p class="tagline">your gentle cycle companion</p>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="update.html" class="active">Update</a>
+    </nav>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═════════════════════════════════════════ -->
+  <main class="wrapper">
+
+    <div class="card">
+      <h1 class="card-title">Update Cycle Details</h1>
+      <p class="card-subtitle">
+        Enter your most recent period information. Your data is stored
+        privately in your browser — nothing is sent anywhere.
+      </p>
+
+      <!-- Error message (hidden by default, shown on validation failure) -->
+      <div
+        id="form-error"
+        role="alert"
+        style="
+          display: none;
+          background: #fdecea;
+          border: 1.5px solid #f1a8a0;
+          border-radius: 12px;
+          padding: 12px 18px;
+          font-size: 0.86rem;
+          color: #8b2a20;
+          margin-bottom: 18px;
+        "
+      ></div>
+
+      <!--
+        The form uses id="update-form" so update.js can attach
+        a submit event listener without inline JS.
+        We use a <form> for semantic HTML and accessibility.
+      -->
+      <form id="update-form" novalidate>
+
+        <!-- Field 1: Last period start date -->
+        <div class="form-group">
+          <label class="form-label" for="last-period-start">
+            Last Period Start Date
+          </label>
+          <input
+            class="form-input"
+            type="date"
+            id="last-period-start"
+            name="last-period-start"
+            required
+            aria-required="true"
+            aria-describedby="hint-date"
+          />
+          <span class="form-hint" id="hint-date">
+            The date your most recent period began.
+          </span>
+        </div>
+
+        <!-- Field 2: Cycle length -->
+        <div class="form-group">
+          <label class="form-label" for="cycle-length">
+            Cycle Length (days)
+          </label>
+          <input
+            class="form-input"
+            type="number"
+            id="cycle-length"
+            name="cycle-length"
+            min="15"
+            max="60"
+            value="28"
+            required
+            aria-required="true"
+            aria-describedby="hint-cycle"
+          />
+          <span class="form-hint" id="hint-cycle">
+            Days from the first day of one period to the first day of the next.
+            Most people have cycles of 21–35 days. The average is 28.
+          </span>
+        </div>
+
+        <!-- Field 3: Period duration -->
+        <div class="form-group">
+          <label class="form-label" for="period-duration">
+            Period Duration (days)
+          </label>
+          <input
+            class="form-input"
+            type="number"
+            id="period-duration"
+            name="period-duration"
+            min="1"
+            max="15"
+            value="5"
+            required
+            aria-required="true"
+            aria-describedby="hint-duration"
+          />
+          <span class="form-hint" id="hint-duration">
+            How many days your period typically lasts (usually 3–7 days).
+          </span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="btn-group">
+          <!--
+            type="submit" triggers the form's submit event,
+            which update.js listens for.
+          -->
+          <button type="submit" class="btn btn-primary">Save & Go to Dashboard</button>
+          <a href="index.html" class="btn btn-secondary">Cancel</a>
+        </div>
+
+      </form>
+
+    </div><!-- /.card -->
+
+    <!-- Privacy note -->
+    <p class="text-center" style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 8px;">
+      🔒 All data is stored locally in your browser. Nothing leaves your device.
+    </p>
+
+  </main>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p>PinkCycle &mdash; a gentle period tracker &hearts;</p>
+  </footer>
+
+  <script type="module" src="js/update.js"></script>
+
+</body>
+</html>
