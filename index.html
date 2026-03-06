@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinkCycle — Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="logo">Pink<span>Cycle</span></div>
+    <p class="tagline">your gentle cycle companion</p>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="update.html">Update</a>
+    </nav>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═════════════════════════════════════════ -->
+  <main class="wrapper">
+
+    <!-- ── EMPTY STATE (shown when no data is saved yet) ─────── -->
+    <!--
+      This section is visible by default.
+      dashboard.js will hide it once it finds data in localStorage.
+    -->
+    <div id="empty-state" class="card">
+      <div class="empty-state">
+        <span class="empty-icon" aria-hidden="true">🌸</span>
+        <h2>Welcome to PinkCycle</h2>
+        <p>
+          Start by entering your last period date and cycle details.
+          PinkCycle will predict upcoming periods and keep you informed.
+        </p>
+        <a href="update.html" class="btn btn-primary">Set Up My Cycle</a>
+      </div>
+    </div>
+
+    <!-- ── DASHBOARD CONTENT (hidden until data is loaded) ────── -->
+    <!--
+      dashboard.js will remove the 'hidden' class when data exists.
+    -->
+    <div id="dashboard-content" class="hidden">
+
+      <!-- Countdown card -->
+      <div class="card">
+        <div class="card-title">Next Period</div>
+        <p class="card-subtitle">Predicted based on your cycle details</p>
+
+        <div class="countdown-wrap">
+
+          <!-- Circular countdown ring -->
+          <!--
+            The ring is a circle div with a CSS conic-gradient background.
+            dashboard.js updates the gradient dynamically via JavaScript.
+            The white inner circle (created via ::before pseudo-element
+            in CSS) creates the "donut hole" effect.
+          -->
+          <div class="circle-container" aria-hidden="true">
+            <div class="circle-ring" id="countdown-ring">
+              <div class="circle-inner">
+                <span class="circle-days" id="countdown-days">—</span>
+                <span class="circle-label">days left</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next period info -->
+          <div class="countdown-info">
+            <p class="next-date-label">Expected start</p>
+            <p class="next-date-value" id="next-date">Loading…</p>
+
+            <div class="cycle-meta" aria-label="Cycle details">
+              <span>Cycle length: <strong><span id="meta-cycle-length">—</span> days</strong></span>
+              <span>Period lasts: <strong><span id="meta-period-duration">—</span> days</strong></span>
+              <span>Last started: <strong><span id="meta-last-start">—</span></strong></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="btn-group">
+          <a href="calendar.html" class="btn btn-primary">View Calendar</a>
+          <a href="update.html"   class="btn btn-secondary">Update Period</a>
+        </div>
+      </div>
+
+    </div><!-- /#dashboard-content -->
+
+  </main>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p>PinkCycle &mdash; a gentle period tracker &hearts;</p>
+  </footer>
+
+  <!--
+    ES6 module script — must include type="module" so the browser
+    understands import/export syntax.
+    The script is at the bottom so the DOM is ready when it runs.
+  -->
+  <script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>
